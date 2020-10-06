@@ -1,9 +1,14 @@
 import unittest
 
-class ProjectTemplate(unittest.TestCase):
+from project_tempate import ProjectTemplate
 
-    def test_(self):
-        
+
+class ProjectTemplateTest(unittest.TestCase):
+
+    def test_no_project_name(self):
+        template = ProjectTemplate()
+        with self.assertRaises(ValueError):
+            template.generate('')
 
 
 if __name__ == '__main__':
