@@ -19,18 +19,18 @@ class ProjectTemplate(object):
                 search_end_idx = re.search('template/', file_path).end()
                 new_path = os.path.join(new_dir, file_path[search_end_idx:]).replace('/project',
                                                                                      f'/{project_folder}')
-                object_name = file_path.split('/')[-1]
-                if object_name == 'project' and os.path.isdir(file_path):
-                    os.mkdir(new_path)
-                elif os.path.isdir(file_path):
+                if os.path.isdir(file_path):
                     os.mkdir(new_path)
                 elif os.path.isfile(file_path):
-                    with open(file_path, 'r') as f:
-                        lines = f.read()
-                    if '${project_name}' in lines:
-                        src = Template(lines)
-                        substitute = {'project_name': project_folder}
-                        with open(new_path, 'w') as outfile:
-                            outfile.write(src.substitute(substitute))
-                    else:
-                        copy_file(file_path, new_path)
+                    self.copy_file_from_template(file_path, new_path, project_folder)
+
+    def copy_file_from_template(self, file_path, new_path, project_folder):
+        with open(file_path, 'r') as f:
+            lines = f.read()
+        if '${project_name}' in lines:
+            src = Template(lines)
+            substitute = {'project_name': project_folder}
+            with open(new_path, 'w') as outfile:
+                outfile.write(src.substitute(substitute))
+        else:
+            copy_file(file_path, new_path)
