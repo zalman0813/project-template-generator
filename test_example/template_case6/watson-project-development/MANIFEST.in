@@ -1,0 +1,11 @@
+include *.yml
+
+include watson_project/VERSION
+include watson_project/config.yml
+
+include ./requirements.txt
+exclude *.log
+exclude *.cfg
+
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]

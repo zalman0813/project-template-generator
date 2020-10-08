@@ -41,6 +41,10 @@ class ProjectTemplateTest(unittest.TestCase):
         self.template.generate(f'{self.project_name}', '.', 'test_example/template_case5/template')
         self.template_should_be_equal('template_case5')
 
+    def test_if_hierachy_template_exists(self):
+        self.template.generate(f'{self.project_name}', '.', 'test_example/template_case6/template')
+        self.template_should_be_equal('template_case6')
+
     def template_should_be_equal(self, test_case):
         cmp = filecmp.dircmp(self.root_directory, f'test_example/{test_case}/{self.root_directory}')
         self.assertEqual(cmp.diff_files, [])
