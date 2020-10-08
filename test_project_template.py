@@ -5,10 +5,13 @@ from project_tempate import ProjectTemplate
 
 class ProjectTemplateTest(unittest.TestCase):
 
+    def setUp(self):
+        self.template = ProjectTemplate()
+
     def test_no_project_name(self):
-        template = ProjectTemplate()
         with self.assertRaises(ValueError):
-            template.generate('')
+            self.template.generate('')
+
 
 
 if __name__ == '__main__':
