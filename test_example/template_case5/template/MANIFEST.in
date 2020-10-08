@@ -1,0 +1,11 @@
+include *.yml
+
+include ${project_name}/VERSION
+include ${project_name}/config.yml
+
+include ./requirements.txt
+exclude *.log
+exclude *.cfg
+
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]
